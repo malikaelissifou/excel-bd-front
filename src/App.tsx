@@ -4,13 +4,16 @@ import { Toaster } from 'sonner';
 import HomePage from './pages/HomePage';
 import TableViewPage from './pages/TableViewPage';
 
+// 👇 Utilise la même logique que api.ts
+const API_BASE = import.meta.env.VITE_API_URL || 'https://excel-bd-backend.onrender.com';
+
 export default function App() {
   const [isBackendReady, setIsBackendReady] = useState(false);
   const [backendError, setBackendError] = useState(false);
 
   useEffect(() => {
     // Test connexion backend
-    fetch('http://10.43.240.107:8000/')
+    fetch(`${API_BASE}/`)  // 👈 Utilise la variable d'environnement
       .then(res => res.json())
       .then(data => {
         console.log('✅ Backend connecté:', data);
@@ -28,10 +31,10 @@ export default function App() {
         <div className="bg-red-50 border-2 border-red-400 rounded-lg p-6 max-w-md">
           <h2 className="text-red-800 font-bold text-xl mb-2">⚠️ Backend non accessible</h2>
           <p className="text-red-700 mb-4">
-            Le serveur FastAPI ne répond pas sur http://127.0.0.1:8000
+            Le serveur FastAPI ne répond pas sur {API_BASE}
           </p>
           <p className="text-red-600 text-sm">
-            Vérifiez que vous avez lancé : <code className="bg-red-100 px-2 py-1 rounded">uvicorn backend:app --reload</code>
+            Vérifiez la configuration du backend.
           </p>
         </div>
       </div>
