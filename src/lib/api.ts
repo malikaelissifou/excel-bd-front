@@ -1,4 +1,4 @@
-const BASE = import.meta.env.VITE_API_URL || 'http://10.43.240.107:8000';
+const BASE = import.meta.env.VITE_API_URL || 'https://excel-bd-front.vercel.app/';
 
 // ============================================================================
 // HELPERS
